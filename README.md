@@ -1,4 +1,22 @@
-# 🏠 AffittoBot — Analisi Contratti d'Affitto con AI
+# AffittoBot
+
+**Analyzes Italian rental contracts: flags unfair clauses, compares the rent with local market prices and reviews property photos.**
+
+![Next.js](https://img.shields.io/badge/Next.js-161b22?style=for-the-badge&labelColor=161b22&color=161b22) ![React](https://img.shields.io/badge/React-161b22?style=for-the-badge&labelColor=161b22&color=161b22) ![Python](https://img.shields.io/badge/Python-161b22?style=for-the-badge&labelColor=161b22&color=161b22) ![FastAPI](https://img.shields.io/badge/FastAPI-161b22?style=for-the-badge&labelColor=161b22&color=161b22) ![Groq](https://img.shields.io/badge/Groq-161b22?style=for-the-badge&labelColor=161b22&color=161b22) ![Llama 3](https://img.shields.io/badge/Llama%203-161b22?style=for-the-badge&labelColor=161b22&color=161b22) ![PyMuPDF](https://img.shields.io/badge/PyMuPDF-161b22?style=for-the-badge&labelColor=161b22&color=161b22)
+
+```mermaid
+flowchart LR
+    S0["Contract PDF + photos"]
+    S1["Text extraction (PyMuPDF)"]
+    S2["Clause analysis (Llama 3 70B)"]
+    S3["Photo analysis (Llama 3.2 Vision)"]
+    S4["Scored report + price comparison"]
+    S0 --> S1 --> S2 --> S3 --> S4
+```
+
+## Problem it solves
+
+Tenants in Italy often sign contracts without spotting abusive clauses or knowing whether the rent is fair. AffittoBot reads the PDF contract and property photos and returns a scored report with legal references and market comparison, without storing any data.
 
 [![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=nextdotjs)](https://nextjs.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?logo=fastapi)](https://fastapi.tiangolo.com)
@@ -9,15 +27,15 @@
 **AffittoBot** analizza automaticamente i contratti d'affitto italiani usando
 l'intelligenza artificiale. In meno di 30 secondi ottieni:
 
-- 📋 **Score del contratto** (1–10) basato su clausole, prezzo e condizioni
-- ⚖️ **Clausole vessatorie** con riferimenti normativi (Art. 1341 CC, L. 431/98…)
-- 💰 **Confronto prezzi** rispetto al mercato locale della tua zona
-- 📸 **Analisi fotografica** delle condizioni dell'immobile
-- 💡 **Consigli personalizzati** per tutelarti come inquilino
+- **Score del contratto** (1–10) basato su clausole, prezzo e condizioni
+- **Clausole vessatorie** con riferimenti normativi (Art. 1341 CC, L. 431/98…)
+- **Confronto prezzi** rispetto al mercato locale della tua zona
+- **Analisi fotografica** delle condizioni dell'immobile
+- **Consigli personalizzati** per tutelarti come inquilino
 
 ---
 
-## ✨ Funzionalità
+## Funzionalità
 
 | Funzione | Descrizione |
 |---|---|
@@ -30,7 +48,7 @@ l'intelligenza artificiale. In meno di 30 secondi ottieni:
 
 ---
 
-## 🛠️ Stack tecnologico
+## Stack tecnologico
 
 - **Frontend**: Next.js 14, React 18, Tailwind CSS 3
 - **Backend**: FastAPI, Python 3.11, PyMuPDF, Groq SDK
@@ -39,7 +57,7 @@ l'intelligenza artificiale. In meno di 30 secondi ottieni:
 
 ---
 
-## 🚀 Avvio rapido
+## Avvio rapido
 
 ### Prerequisiti
 
@@ -98,7 +116,7 @@ L'app sarà disponibile su `http://localhost:3000`.
 
 ---
 
-## 🐳 Avvio con Docker
+## Avvio con Docker
 
 ```bash
 # Crea il file .env nella cartella backend
@@ -114,18 +132,18 @@ docker-compose up --build
 
 ---
 
-## 📸 Screenshot
+## Screenshot
 
 ```
 ┌─────────────────────────────────────────┐
-│  🏠 AffittoBot                          │
+│   AffittoBot                          │
 │                                         │
 │  Analizza il tuo contratto d'affitto    │
 │  in 5 minuti con l'intelligenza         │
 │  artificiale                            │
 │                                         │
-│  [📄 Carica contratto PDF        ]      │
-│  [📸 Carica foto appartamento    ]      │
+│  [ Carica contratto PDF        ]      │
+│  [ Carica foto appartamento    ]      │
 │  Città: Roma    Quartiere: Trastevere   │
 │  Superficie: 65 m²   Canone: €950/mese  │
 │                                         │
@@ -139,16 +157,16 @@ docker-compose up --build
 │       │  6.5/10  │  ← gauge animato     │
 │       ╰──────────╯                      │
 │                                         │
-│  ⚠️ Clausole Vessatorie (2 trovate)      │
-│  💰 Analisi Prezzi (sopra media +12%)   │
-│  📸 Analisi Foto (condizioni discrete)  │
-│  💡 5 Consigli personalizzati           │
+│   Clausole Vessatorie (2 trovate)      │
+│   Analisi Prezzi (sopra media +12%)   │
+│   Analisi Foto (condizioni discrete)  │
+│   5 Consigli personalizzati           │
 └─────────────────────────────────────────┘
 ```
 
 ---
 
-## 🔐 Privacy
+## Privacy
 
 > **Nessun dato salvato.** I file caricati vengono conservati temporaneamente
 > in `/tmp/{uuid}/` ed eliminati automaticamente dopo **1 ora**. Non salviamo
@@ -156,7 +174,7 @@ docker-compose up --build
 
 ---
 
-## ❓ Perché questo progetto?
+## Perché questo progetto?
 
 Il mercato degli affitti italiano è tra i più complicati d'Europa:
 
@@ -170,17 +188,17 @@ ogni inquilino può capire se il suo contratto è equo e tutelarsi di conseguenz
 
 ---
 
-## 🤝 Contribuire
+## Contribuire
 
 Le PR sono benvenute! Per modifiche significative, apri prima una Issue per
 discutere le modifiche proposte.
 
 ---
 
-## 📄 Licenza
+## Licenza
 
-MIT © 2024 — Sviluppato con ❤️ in Italia
+MIT © 2024 — Sviluppato con  in Italia
 
 ---
 
-🔗 **Demo live**: [affittobot.vercel.app](https://affittobot.vercel.app) *(placeholder)*
+ **Demo live**: [affittobot.vercel.app](https://affittobot.vercel.app) *(placeholder)*

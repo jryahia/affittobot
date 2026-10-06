@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { Camera, ClipboardList, FileText, House, Lock, Scale, Trash2, Zap } from "lucide-react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import FileUpload from "../components/FileUpload";
@@ -111,11 +112,11 @@ export default function Home() {
         {/* Navigation */}
         <nav className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-2xl">🏠</span>
+            <House className="w-6 h-6 text-blue-600" />
             <span className="font-black text-xl text-gray-800">AffittoBot</span>
           </div>
           <a
-            href="https://github.com"
+            href="https://github.com/jryahia/affittobot"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
@@ -141,16 +142,16 @@ export default function Home() {
           {/* Trust badges */}
           <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
             {[
-              { icon: "🔒", text: "Nessun dato salvato" },
-              { icon: "⚖️", text: "Basato su legge italiana" },
-              { icon: "⚡", text: "Risultati in 30 secondi" },
-              { icon: "🗑️", text: "Auto-cancellazione dopo 1h" },
-            ].map(({ icon, text }) => (
+              { icon: Lock, text: "Nessun dato salvato" },
+              { icon: Scale, text: "Basato su legge italiana" },
+              { icon: Zap, text: "Risultati in 30 secondi" },
+              { icon: Trash2, text: "Auto-cancellazione dopo 1h" },
+            ].map(({ icon: Icon, text }) => (
               <div
                 key={text}
                 className="flex items-center gap-1.5 text-sm text-gray-500 bg-white px-3 py-1.5 rounded-full shadow-sm border border-gray-100"
               >
-                <span>{icon}</span>
+                <Icon className="w-4 h-4" />
                 <span>{text}</span>
               </div>
             ))}
@@ -164,7 +165,7 @@ export default function Home() {
               {/* PDF Upload */}
               <div className="card">
                 <h2 className="text-base font-bold text-gray-800 mb-4 flex items-center gap-2">
-                  <span className="text-red-500">📄</span>
+                  <FileText className="w-4 h-4 text-red-500" />
                   Contratto d'affitto
                   <span className="text-red-500 text-sm">*</span>
                 </h2>
@@ -186,7 +187,7 @@ export default function Home() {
               {/* Photo Upload */}
               <div className="card">
                 <h2 className="text-base font-bold text-gray-800 mb-1 flex items-center gap-2">
-                  <span>📸</span>
+                  <Camera className="w-4 h-4" />
                   Foto dell'appartamento
                   <span className="text-gray-400 font-normal text-sm">(opzionale)</span>
                 </h2>
@@ -207,7 +208,7 @@ export default function Home() {
               {/* Form fields */}
               <div className="card">
                 <h2 className="text-base font-bold text-gray-800 mb-5 flex items-center gap-2">
-                  <span>📋</span>
+                  <ClipboardList className="w-4 h-4" />
                   Dettagli dell'affitto
                 </h2>
                 <FormFields

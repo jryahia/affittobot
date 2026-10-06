@@ -105,36 +105,6 @@ export default function FormFields({ values, onChange, errors }) {
 
   return (
     <div className="space-y-5">
-      <style jsx>{`
-        .form-input {
-          display: block;
-          width: 100%;
-          padding: 0.625rem 0.875rem;
-          border: 1px solid #d1d5db;
-          border-radius: 0.75rem;
-          font-size: 0.875rem;
-          color: #1f2937;
-          background: white;
-          transition: border-color 0.15s, box-shadow 0.15s;
-          outline: none;
-        }
-        .form-input:focus {
-          border-color: #009246;
-          box-shadow: 0 0 0 3px rgba(0, 146, 70, 0.12);
-        }
-        .form-label {
-          display: block;
-          font-size: 0.875rem;
-          font-weight: 600;
-          color: #374151;
-          margin-bottom: 0.375rem;
-        }
-        .form-error {
-          font-size: 0.75rem;
-          color: #dc2626;
-          margin-top: 0.25rem;
-        }
-      `}</style>
 
       {/* Città */}
       <div>

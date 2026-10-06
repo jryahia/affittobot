@@ -3,6 +3,21 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import ReportSection from "../components/ReportSection";
 import ScoreGauge from "../components/ScoreGauge";
+import {
+  BookOpen,
+  CircleCheck,
+  CircleX,
+  Droplets,
+  FileWarning,
+  House,
+  Image as ImageIcon,
+  Lightbulb,
+  Scale,
+  TrendingDown,
+  TrendingUp,
+  TriangleAlert,
+  ChartColumn,
+} from "lucide-react";
 
 // ── Severity helpers ──────────────────────────────────────────────────────────
 
@@ -13,11 +28,11 @@ function SeverityBadge({ gravita }) {
     bassa: "badge-bassa",
   };
   const labels = { alta: "Alta", media: "Media", bassa: "Bassa" };
-  const icons = { alta: "🔴", media: "🟡", bassa: "🟢" };
   const cls = map[gravita] || "badge-bassa";
   return (
     <span className={cls}>
-      {icons[gravita] || "⚪"} Gravità {labels[gravita] || gravita}
+      <span className="inline-block w-2 h-2 rounded-full bg-current mr-1 align-middle" />
+      Gravità {labels[gravita] || gravita}
     </span>
   );
 }
@@ -93,7 +108,7 @@ export default function Dashboard() {
   if (error) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center px-4 gap-6">
-        <div className="text-6xl">😞</div>
+        <FileWarning className="w-16 h-16 text-gray-400" />
         <h1 className="text-xl font-bold text-gray-800 text-center">{error}</h1>
         <button className="btn-primary" onClick={() => router.push("/")}>
           ← Nuova analisi
@@ -132,7 +147,7 @@ export default function Dashboard() {
         <nav className="bg-white border-b border-gray-100 sticky top-0 z-30 no-print">
           <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="text-xl">🏠</span>
+              <House className="w-5 h-5 text-blue-600" />
               <span className="font-black text-lg text-gray-800">AffittoBot</span>
               <span className="text-gray-300 mx-1">|</span>
               <span className="text-sm text-gray-500">Report analisi</span>
@@ -173,7 +188,7 @@ export default function Dashboard() {
                 ? `${clausole_vessatorie.length} clausola${clausole_vessatorie.length !== 1 ? "e" : ""} problematica${clausole_vessatorie.length !== 1 ? "e" : ""} rilevata${clausole_vessatorie.length !== 1 ? "e" : ""}`
                 : "Nessuna clausola problematica rilevata"
             }
-            badge={clausole_vessatorie.length > 0 ? `${clausole_vessatorie.length} trovate` : "✓ OK"}
+            badge={clausole_vessatorie.length > 0 ? `${clausole_vessatorie.length} trovate` : "OK"}
             icon={
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -185,7 +200,7 @@ export default function Dashboard() {
           >
             {clausole_vessatorie.length === 0 ? (
               <div className="flex items-center gap-3 text-green-700 bg-green-50 rounded-xl p-4">
-                <span className="text-2xl">✅</span>
+                <CircleCheck className="w-7 h-7 shrink-0" />
                 <p className="text-sm font-medium">
                   Ottimo! Non sono state rilevate clausole problematiche nel contratto.
                 </p>
@@ -214,7 +229,8 @@ export default function Dashboard() {
                     </div>
                     {c.articolo && (
                       <p className="text-xs text-gray-500 mb-2">
-                        📖 <span className="font-medium">{c.articolo}</span>
+                        <BookOpen className="inline w-3.5 h-3.5 mr-1 align-[-2px]" />
+                        <span className="font-medium">{c.articolo}</span>
                       </p>
                     )}
                     <p className="text-sm text-gray-600 leading-relaxed">{c.spiegazione}</p>
@@ -247,9 +263,9 @@ export default function Dashboard() {
                   border: `1px solid ${confrontoColor}44`,
                 }}
               >
-                {market_data.confronto === "sotto media" && "📉"}
-                {market_data.confronto === "nella media" && "📊"}
-                {market_data.confronto === "sopra media" && "📈"}
+                {market_data.confronto === "sotto media" && <TrendingDown className="w-4 h-4" />}
+                {market_data.confronto === "nella media" && <ChartColumn className="w-4 h-4" />}
+                {market_data.confronto === "sopra media" && <TrendingUp className="w-4 h-4" />}
                 <span>
                   Prezzo{" "}
                   {market_data.confronto === "sotto media"
@@ -308,8 +324,9 @@ export default function Dashboard() {
 
               {/* Valutazione text */}
               {price_analysis.valutazione && (
-                <p className="text-sm text-gray-600 bg-blue-50 rounded-xl p-4 leading-relaxed">
-                  💡 {price_analysis.valutazione}
+                <p className="text-sm text-gray-600 bg-blue-50 rounded-xl p-4 leading-relaxed flex gap-2">
+                  <Lightbulb className="w-4 h-4 mt-0.5 shrink-0 text-blue-600" />
+                  <span>{price_analysis.valutazione}</span>
                 </p>
               )}
 
@@ -342,7 +359,8 @@ export default function Dashboard() {
                   <div key={p.foto_index} className="border border-gray-100 rounded-xl p-4 space-y-3">
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-semibold text-gray-700">
-                        📷 Foto {p.foto_index}
+                        <ImageIcon className="inline w-4 h-4 mr-1 align-[-3px]" />
+                        Foto {p.foto_index}
                       </span>
                       <span
                         className="text-xs font-semibold px-2 py-0.5 rounded-full"
@@ -361,17 +379,19 @@ export default function Dashboard() {
                               : "#991b1b",
                         }}
                       >
-                        {p.condizioni_generali === "buone"
-                          ? "✅ Buone condizioni"
-                          : p.condizioni_generali === "discrete"
-                          ? "⚠️ Condizioni discrete"
-                          : "❌ Condizioni scadenti"}
+                        {p.condizioni_generali === "buone" ? (
+                          <><CircleCheck className="inline w-3.5 h-3.5 mr-1 align-[-2px]" />Buone condizioni</>
+                        ) : p.condizioni_generali === "discrete" ? (
+                          <><TriangleAlert className="inline w-3.5 h-3.5 mr-1 align-[-2px]" />Condizioni discrete</>
+                        ) : (
+                          <><CircleX className="inline w-3.5 h-3.5 mr-1 align-[-2px]" />Condizioni scadenti</>
+                        )}
                       </span>
                     </div>
 
                     {p.umidita_presente && (
                       <div className="flex items-center gap-1.5 text-xs text-blue-700 bg-blue-50 rounded-lg px-3 py-1.5">
-                        <span>💧</span>
+                        <Droplets className="w-3.5 h-3.5" />
                         <span className="font-medium">Possibile umidità rilevata</span>
                       </div>
                     )}
@@ -440,7 +460,8 @@ export default function Dashboard() {
           {/* Disclaimer */}
           <div className="bg-gray-100 rounded-2xl p-5 text-center space-y-2 no-print">
             <p className="text-xs text-gray-500 leading-relaxed">
-              ⚖️ <strong>Disclaimer legale:</strong> Questa analisi è generata da
+              <Scale className="inline w-3.5 h-3.5 mr-1 align-[-2px]" />
+              <strong>Disclaimer legale:</strong> Questa analisi è generata da
               intelligenza artificiale a scopo informativo e non costituisce consulenza
               legale professionale. Per decisioni importanti, consulta un avvocato
               specializzato in diritto delle locazioni.
